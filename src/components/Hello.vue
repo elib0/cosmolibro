@@ -1,0 +1,27 @@
+<template>
+  <div class="hello">
+    <h1>{{ msg }}</h1>
+    <input class="form-control" type="text" class="form-control" v-model="msg">
+    <label>Prueba de activacion alert</label><input type="checkbox">
+  </div>
+</template>
+
+<script>
+export default {
+  data () {
+    return {
+      msg: 'Hola mundo!'
+    }
+  },
+  ready () {
+    console.log('Hola mundo')
+  }
+}
+</script>
+
+<!-- Add "scoped" attribute to limit CSS to this component only -->
+<style scoped>
+h1 {
+  color: #42b983;
+}
+</style>
