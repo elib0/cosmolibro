@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+import VueResource from 'vue-resource'
 import { configRouter } from './route-config'
 import app from './App'
 
@@ -7,6 +8,7 @@ import app from './App'
 
 // Instalamos Plugin Vue
 Vue.use(VueRouter)
+Vue.use(VueResource)
 
 // Creamos rutas
 const router = new VueRouter({

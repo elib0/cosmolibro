@@ -7,6 +7,12 @@ export function configRouter (router) {
       // but a component with that id must be available in the
       // App component's scope.
       component: require('./components/Hello.vue')
+    },
+    '/home': {
+      // the component can also be a plain string component id,
+      // but a component with that id must be available in the
+      // App component's scope.
+      component: require('./components/Home.vue')
     }
   })
 

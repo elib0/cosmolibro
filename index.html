@@ -11,5 +11,16 @@
       <app></app>
     </div>
     <!-- built files will be auto injected -->
+    <script type="text/javascript" src="https://www.google.com/books/jsapi.js"></script>
+    <script>
+       google.books.load();
+
+      function initialize() {
+        var viewer = new google.books.DefaultViewer(document.getElementById('viewerCanvas'));
+        viewer.load('ISBN:0738531367');
+      }
+
+      google.books.setOnLoadCallback(initialize);
+    </script>
   </body>
 </html>

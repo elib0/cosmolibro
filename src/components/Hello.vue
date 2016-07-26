@@ -2,7 +2,6 @@
   <div class="hello">
     <h1>{{ msg }}</h1>
     <input class="form-control" type="text" class="form-control" v-model="msg">
-    <label>Prueba de activacion alert</label><input type="checkbox">
   </div>
 </template>
 
