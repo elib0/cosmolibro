@@ -3,7 +3,7 @@
     <alert :show.sync="showModal" :duration="3000" placement="top" type="warning" dismissable>
       <strong>Titulo</strong> Mensaje
     </alert>
-    <div id="app">
+    <div>
       <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
           <div>
@@ -28,7 +28,7 @@
           </navbar>
         </div>
       </div>
-      <div class="row">
+      <div class="row wrapper">
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
           <router-view transition-mode="out-in" keep-alive></router-view>
         </div>
@@ -59,9 +59,11 @@ export default {
 }
 </script>
 
+<style lang="less">
+@import "../node_modules/animate.css/animate.min.css";
+@import "./bootstrap.less";
+</style>
+
 <style lang="sass">
-  body
-    background-color: rgb(0, 157, 220)
-  .logo
-    height: 2em
+@import "./app.sass"
 </style>
