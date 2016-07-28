@@ -24,5 +24,7 @@ export default {
 }
 </script>
 
-<style lang="css" scoped>
+<style lang="sass" scoped>
+form
+  margin-bottom: 5px
 </style>

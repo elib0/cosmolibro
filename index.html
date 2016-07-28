@@ -3,24 +3,12 @@
   <head>
     <meta charset="utf-8">
     <title>Cosmo Libro</title>
-     <!-- BootStrap -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
   </head>
   <body>
     <div class="container">
       <app></app>
     </div>
     <!-- built files will be auto injected -->
-    <script type="text/javascript" src="https://www.google.com/books/jsapi.js"></script>
-    <script>
-       google.books.load();
-
-      function initialize() {
-        var viewer = new google.books.DefaultViewer(document.getElementById('viewerCanvas'));
-        viewer.load('ISBN:0738531367');
-      }
-
-      google.books.setOnLoadCallback(initialize);
-    </script>
   </body>
 </html>

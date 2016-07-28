@@ -1,7 +1,7 @@
 <template>
-<div class="well">
-  <h5>Mi cuenta:</h5>
-  <form class="form-inline">
+<div>
+  <h4 class="text-center">Mi cuenta:</h4>
+  <form class="form">
     <div class="form-group">
       <label >Usuario:</label>
       <input type="text" class="form-control">
@@ -10,6 +10,14 @@
       <label>Contraseña:</label>
       <input type="password" class="form-control">
     </div>
+    <button type="button" class="btn btn-info btn-sm">Entrar</button>
+    <p class="text-center">
+      <small>
+        <a href="#">¿Olvido su contraseña?</a>
+        <br>
+        <a href="#">Registrarse</a>
+      </small>
+    </p>
   </form>
 </div>
 </template>
@@ -28,4 +36,6 @@ export default {
 </script>
 
 <style lang="sass" scoped>
+  h4.text-center
+    font-weight: bold
 </style>
