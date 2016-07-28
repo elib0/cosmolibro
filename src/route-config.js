@@ -1,18 +1,16 @@
 export function configRouter (router) {
   // normal routes
   router.map({
-    // basic example
     '/hello': {
-      // the component can also be a plain string component id,
-      // but a component with that id must be available in the
-      // App component's scope.
       component: require('./components/Hello.vue')
     },
-    '/home': {
-      // the component can also be a plain string component id,
-      // but a component with that id must be available in the
-      // App component's scope.
-      component: require('./components/Home.vue')
+    '/': {
+      component: require('./components/Home.vue'),
+      subRoutes: {
+        '/home': {
+          component: require('./components/Home.vue')
+        }
+      }
     }
   })
 
