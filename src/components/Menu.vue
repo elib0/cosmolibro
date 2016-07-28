@@ -1,28 +1,24 @@
 <template>
-<div class="row">
-  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-    <div>
-      <h1 class="text-center"><strong>Logo de la empresa</strong></h1>
-      <div class="row">
-          <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 col-xs-offset-4 col-sm-offset-4 col-md-offset-4 col-lg-offset-4">
-            <search></search>
-          </div>
-      </div>
+  <div>
+    <h1 class="text-center"><strong>Logo de la empresa</strong></h1>
+    <div class="row">
+        <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 col-xs-offset-4 col-sm-offset-4 col-md-offset-4 col-lg-offset-4">
+          <search></search>
+        </div>
     </div>
-    <navbar placement="static" class="block-center">
-      <li><a v-link="{ path:'/' }">Inicio</a></li>
-      <li><a v-link="{ path:'/books' }">Libros</a></li>
-      <li><a v-link="{ path:'/ebooks' }">E-Books</a></li>
-      <li><a v-link="{ path:'/hello' }">Promociones</a></li>
-      <li><a v-link="{ path:'/contact' }">Contacto</a></li>
-      <li><a v-link="{ path:'/buys' }">Mis Compras</a></li>
-      <li>
-        <a v-link="{ path:'/car' }"><span class="badge" v-text="0"></span><i class="glyphicon glyphicon-shopping-cart"></i>
-        </a>
-      </li>
-    </navbar>
   </div>
-</div>
+  <navbar placement="static" class="block-center">
+    <li><a v-link="{ path:'/' }">Inicio</a></li>
+    <li><a v-link="{ path:'/books' }">Libros</a></li>
+    <li><a v-link="{ path:'/ebooks' }">E-Books</a></li>
+    <li><a v-link="{ path:'/hello' }">Promociones</a></li>
+    <li><a v-link="{ path:'/contact' }">Contacto</a></li>
+    <li><a v-link="{ path:'/buys' }">Mis Compras</a></li>
+    <li>
+      <a v-link="{ path:'/car' }"><span class="badge" v-text="0"></span><i class="glyphicon glyphicon-shopping-cart"></i>
+      </a>
+    </li>
+  </navbar>
 </template>
 
 <script>

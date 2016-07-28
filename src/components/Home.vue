@@ -29,6 +29,6 @@ export default {
 </script>
 
 <style lang="sass" scoped>
-  .page-home > div
+  .page-home > div > *
     background-color: white
 </style>

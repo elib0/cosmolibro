@@ -4,7 +4,11 @@
       <strong>Titulo</strong> Mensaje
     </alert>
     <div>
-      <menu></menu>
+      <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+          <menu></menu>
+        </div>
+      </div>
       <div class="row wrapper">
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
           <router-view transition-mode="out-in" keep-alive></router-view>
