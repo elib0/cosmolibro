@@ -15,7 +15,7 @@
     <li><a v-link="{ path:'/contact' }">Contacto</a></li>
     <li><a v-link="{ path:'/buys' }">Mis Compras</a></li>
     <li>
-      <a v-link="{ path:'/car' }"><span class="badge" v-text="0"></span><i class="glyphicon glyphicon-shopping-cart"></i>
+      <a v-link="{ path:'/car' }" class="cart"><span class="badge" v-text="0"></span><i class="glyphicon glyphicon-shopping-cart"></i>
       </a>
     </li>
   </navbar>
@@ -43,4 +43,10 @@ export default {
 .navbar-nav > li > a
   font-size: 1.5em;
   font-weight: bold;
+  height: 50px;
+.cart .badge
+  position: absolute
+  top: 8px;
+  z-index: 2;
+  right: 3px;
 </style>

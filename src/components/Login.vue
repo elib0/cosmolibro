@@ -4,11 +4,11 @@
   <form class="form">
     <div class="form-group">
       <label >Usuario:</label>
-      <input type="text" class="form-control">
+      <input type="text" class="form-control" v-model="user.nick">
     </div>
     <div class="form-group">
       <label>Contraseña:</label>
-      <input type="password" class="form-control">
+      <input type="password" class="form-control" v-model="user.password">
     </div>
     <button type="button" class="btn btn-info btn-sm">Entrar</button>
     <p class="text-center">
@@ -29,7 +29,7 @@ export default {
 
   data () {
     return {
-
+      user: {}
     }
   }
 }
