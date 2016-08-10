@@ -12,7 +12,7 @@
       </div>
       <div class="row wrapper">
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-          <router-view class="animated" transition-mode="bounce" keep-alive></router-view>
+          <router-view class="animated" transition-mode="out-in" keep-alive></router-view>
         </div>
       </div>
     </div>
@@ -28,28 +28,13 @@ export default {
   data () {
     return {
       showModal: false,
-      reponse: null,
-      books: null
+      reponse: null
     }
   },
   components: {
     Menu,
     alert,
     spinner
-  },
-  compiled: function () {
-    this.$refs.spinner.show()
-  },
-  ready: function () {
-    let api = 'https://www.googleapis.com/books/v1/volumes?q=all'
-    this.$http.get(api).then(res => {
-      let books = res.json().items
-      this.books = books.items
-      this.$refs.spinner.hide()
-      console.log(this.books)
-    }).catch(err => {
-      console.log(err)
-    })
   }
 }
 </script>
