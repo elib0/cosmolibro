@@ -28,7 +28,8 @@ export default {
   data () {
     return {
       showModal: false,
-      reponse: null
+      reponse: null,
+      cart: []
     }
   },
   components: {

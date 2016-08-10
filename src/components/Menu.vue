@@ -8,14 +8,14 @@
     </div>
   </div>
   <navbar placement="static" class="block-center">
-    <li><a v-link="{ path:'/' }">Inicio</a></li>
+    <li><a v-link="{ path:'/#' }">Inicio</a></li>
     <li><a v-link="{ path:'/books' }">Libros</a></li>
     <li><a v-link="{ path:'/ebooks' }">E-Books</a></li>
     <li><a v-link="{ path:'/hello' }">Promociones</a></li>
     <li><a v-link="{ path:'/contact' }">Contacto</a></li>
     <li><a v-link="{ path:'/buys' }">Mis Compras</a></li>
     <li>
-      <a v-link="{ path:'/car' }" class="cart"><span class="badge" v-text="0"></span><i class="glyphicon glyphicon-shopping-cart"></i>
+      <a v-link="{ path:'/car' }" class="cart"><span class="badge animated" transition="bounce">{{ cart.length }}</span><i class="glyphicon glyphicon-shopping-cart"></i>
       </a>
     </li>
   </navbar>
@@ -25,18 +25,28 @@
 import { navbar } from 'vue-strap'
 import search from './Search.vue'
 
+var animate = {
+  enterClass: 'pulse',
+  leaveClass: 'shake'
+}
+
+console.log(animate)
+
 export default {
 
   name: 'menu',
 
   data () {
     return {
-
+      cart: []
     }
   },
   components: {
     navbar,
     search
+  },
+  ready: function () {
+    this.cart = this.$root.cart
   }
 }
 </script>
