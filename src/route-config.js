@@ -1,8 +1,8 @@
 export function configRouter (router) {
   // normal routes
   router.map({
-    '/hello': {
-      component: require('./components/Hello.vue')
+    '/contact': {
+      component: require('./components/Contact.vue')
     },
     '/': {
       component: require('./components/Home.vue'),

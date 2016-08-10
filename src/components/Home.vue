@@ -14,16 +14,15 @@
 import Login from './Login'
 
 export default {
-
-  name: 'Home',
-
   data () {
     return {
-
     }
   },
   components: {
     Login
+  },
+  ready: function () {
+    console.log(this)
   }
 }
 </script>

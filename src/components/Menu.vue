@@ -23,6 +23,7 @@
 
 <script>
 import { navbar } from 'vue-strap'
+import search from './Search.vue'
 
 export default {
 
@@ -34,7 +35,8 @@ export default {
     }
   },
   components: {
-    navbar
+    navbar,
+    search
   }
 }
 </script>

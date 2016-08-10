@@ -13,9 +13,6 @@
 // import VueResource from 'vue-resource'
 
 export default {
-
-  name: 'search',
-
   data () {
     return {
 
