@@ -15,9 +15,12 @@
     <li><a v-link="{ path:'/contact' }">Contacto</a></li>
     <li><a v-link="{ path:'/buys' }">Mis Compras</a></li>
     <li>
-      <a v-link="{ path:'/car' }" class="cart"><span class="badge animated" transition="bounce">{{ cart.length }}</span><i class="glyphicon glyphicon-shopping-cart"></i>
+      <a v-link="{ path:'/car' }" class="cart"><span class="badge animated" :clas="{'pulse':newItem}">{{ cart.length }}</span><i class="glyphicon glyphicon-shopping-cart"></i>
       </a>
     </li>
+    <!-- <li slot="right" class="social-buttons">Prueba</li>
+    <li slot="right" class="social-buttons">Prueba</li>
+    <li slot="right" class="social-buttons">Prueba</li> -->
   </navbar>
 </template>
 
@@ -25,20 +28,12 @@
 import { navbar } from 'vue-strap'
 import search from './Search.vue'
 
-var animate = {
-  enterClass: 'pulse',
-  leaveClass: 'shake'
-}
-
-console.log(animate)
-
 export default {
-
-  name: 'menu',
 
   data () {
     return {
-      cart: []
+      cart: [],
+      newItem: false
     }
   },
   components: {
@@ -47,6 +42,17 @@ export default {
   },
   ready: function () {
     this.cart = this.$root.cart
+  },
+  watch: {
+    'cart': {
+      handler: function (val, oldVal) {
+        console.log(val, oldVal)
+        if (oldVal) {
+          this.newItem = true
+        }
+      },
+      deep: true
+    }
   }
 }
 </script>

@@ -1,27 +1,27 @@
 <template>
   <div class="page-home">
     <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
-      <div class="row">
-        <div v-for="book in books" class="col-xs-4 col-sm-4 col-md-4 col-lg-4 book">
-          <div class="well">
-            <h5 class="text-center">
-              <strong>{{ book.volumeInfo.title }}</strong>
-            </h5>
-            <img :src="book.volumeInfo.imageLinks.smallThumbnail" alt="{{ book.volumeInfo.title }}">
-            <span class="label label-info">paginas:{{ book.volumeInfo.pageCount }}</span>
-            <p class="text-center book-description">{{ book.volumeInfo.description || 'Sin Desciprcion' }}</p>
-            <button type="button" class="btn btn-success btn-block">Agregar al carrito</button>
+        <section class="row">
+          <div v-for="book in books" class="col-xs-4 col-sm-4 col-md-4 col-lg-4 book" @click="showDetails($index)">
+            <div class="text-center">
+              <h5 class="book-title">
+                <strong>{{ book.volumeInfo.title }}</strong>
+              </h5>
+              <img class="book-image" :src="book.volumeInfo.imageLinks.smallThumbnail" alt="{{ book.volumeInfo.title }}">
+              <!-- <span class="label label-info">paginas:{{ book.volumeInfo.pageCount }}</span> -->
+              <p class="book-description">{{ book.volumeInfo.description || 'Sin Desciprcion' }}</p>
+              <button type="button" class="btn btn-success btn-xs btn-block" @click="addToCart(book.id)">Agregar al carrito</button>
+            </div>
           </div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-          Libro del mes
-        </div>
-        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-          Novedades
-        </div>
-      </div>
+        </section>
+        <section class="row">
+          <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+            <popular></popular>
+          </div>
+          <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+            <h4>NOVEDADES</h4>
+          </div>
+        </section>
     </div>
     <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
       <login></login>
@@ -30,16 +30,21 @@
 </template>
 
 <script>
+import popular from './PopularBook'
 import Login from './Login'
+import modal from 'vue-strap'
 
 export default {
   data () {
     return {
-      books: []
+      books: [],
+      zoomModal: true
     }
   },
   components: {
-    Login
+    Login,
+    modal,
+    popular
   },
   compiled: function () {
     this.$root.$refs.spinner.show()
@@ -53,6 +58,14 @@ export default {
     }).catch(err => {
       console.log(err)
     })
+  },
+  methods: {
+    addToCart: function (id) {
+      this.$root.cart.push(id)
+    },
+    showDetails: function (id) {
+      this.zoomModal = true
+    }
   }
 }
 </script>
@@ -60,13 +73,13 @@ export default {
 <style lang="sass" scoped>
   .page-home > div > *
     background-color: white
+    section
+      margin-bottom: 1em
 
   .book
-    .well
-      min-height: 450px
+    cursor: pointer
     .book-description
-      width: 100%;
-      height: 10em;
+      height: 6rem;
       text-overflow: ellipsis;
       white-space: pre-wrap;
       overflow: hidden;

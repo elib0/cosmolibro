@@ -5,19 +5,12 @@ export function configRouter (router) {
       component: require('./components/Contact.vue')
     },
     '/': {
-      component: require('./components/Home.vue'),
-      subRoutes: {
-        '/home': {
-          component: require('./components/Home.vue')
-        }
-      }
+      component: require('./components/Home.vue')
     }
   })
 
   // redirect
   router.redirect({
-    '/info': '/about',
-    '/hello/:userId': '/user/:userId'
   })
 
   // global before
