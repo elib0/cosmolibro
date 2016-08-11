@@ -64,7 +64,9 @@ export default {
       this.$root.cart.push(id)
     },
     showDetails: function (id) {
-      this.zoomModal = true
+      console.log(this.books[id])
+      this.$root.modal.show = true
+      this.$root.modal.book = this.books[id]
     }
   }
 }
