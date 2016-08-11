@@ -8,8 +8,7 @@
                 <strong>{{ book.volumeInfo.title }}</strong>
               </h5>
               <img class="book-image" height="180" :src="book.volumeInfo.imageLinks.smallThumbnail" alt="{{ book.volumeInfo.title }}">
-              <!-- <span class="label label-info">paginas:{{ book.volumeInfo.pageCount }}</span> -->
-              <p class="book-description">{{ book.volumeInfo.description || 'Sin Desciprcion' }}</p>
+              <p class="book-description">{{ book.volumeInfo.description || 'Sin descripción' }}</p>
               <button type="button" class="btn btn-success btn-xs btn-block" @click="addToCart(book.id)">Agregar al carrito</button>
             </div>
           </div>

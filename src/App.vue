@@ -7,9 +7,9 @@
     <div slot="modal-title" class="modal-title">{{ modal.book.volumeInfo.title }}</div>
     <div slot="modal-body" class="modal-body">
       <img class="book-image" height="180" :src="modal.book.volumeInfo.imageLinks.smallThumbnail" alt="{{ modal.book.volumeInfo.title }}">
-      {{ modal.book.volumeInfo.description }}
+      {{ modal.book.volumeInfo.description || 'Sin descripción' }}
       <span class="label label-info">N° paginas:{{ modal.book.volumeInfo.pageCount }}</span>
-      <span class="label label-primary">Año de publicacion:{{ modal.book.volumeInfo.publishedDate }}</span>
+      <span class="label label-primary">Año de publicación:{{ modal.book.volumeInfo.publishedDate }}</span>
       <span class="label label-warning">
         Autor(es):
         <span v-for="author in modal.book.volumeInfo.authors">{{ author }}, </span>
