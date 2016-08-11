@@ -1,8 +1,8 @@
 <template>
   <div class="page-home">
-    <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
+    <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
         <section class="row">
-          <div v-for="book in books" class="col-xs-4 col-sm-4 col-md-4 col-lg-4 book" @click="showDetails($index)">
+          <div v-for="book in books" class="col-xs-6 col-sm-6 col-md-4 col-lg-4 book" @click="showDetails($index)">
             <div class="text-center">
               <h5 class="book-title">
                 <strong>{{ book.volumeInfo.title }}</strong>
@@ -23,7 +23,7 @@
           </div>
         </section>
     </div>
-    <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+    <div class="hidden-xs hidde-sm col-md-4 col-lg-4">
       <login></login>
     </div>
   </div>
