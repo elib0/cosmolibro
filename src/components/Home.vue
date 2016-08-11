@@ -7,7 +7,7 @@
               <h5 class="book-title">
                 <strong>{{ book.volumeInfo.title }}</strong>
               </h5>
-              <img class="book-image" :src="book.volumeInfo.imageLinks.smallThumbnail" alt="{{ book.volumeInfo.title }}">
+              <img class="book-image" height="180" :src="book.volumeInfo.imageLinks.smallThumbnail" alt="{{ book.volumeInfo.title }}">
               <!-- <span class="label label-info">paginas:{{ book.volumeInfo.pageCount }}</span> -->
               <p class="book-description">{{ book.volumeInfo.description || 'Sin Desciprcion' }}</p>
               <button type="button" class="btn btn-success btn-xs btn-block" @click="addToCart(book.id)">Agregar al carrito</button>
@@ -73,8 +73,9 @@ export default {
 <style lang="sass" scoped>
   .page-home > div > *
     background-color: white
+    min-height: 300px
     section
-      margin-bottom: 1em
+      margin-bottom: 2em
 
   .book
     cursor: pointer

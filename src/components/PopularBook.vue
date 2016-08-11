@@ -1,11 +1,16 @@
 <template>
 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-  <h4 class="text-uppercase text-center">El libro del mes</h4>
-  <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+  <h4 class="text-uppercase text-center title">El libro del mes</h4>
+  <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
     <img :src="book.volumeInfo.imageLinks.smallThumbnail" alt="">
   </div>
-  <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
-    <p class="book-description">{{ book.volumeInfo.description || 'Sin Desciprcion' }}</p>
+  <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+    <p class="book-description">
+      {{ book.volumeInfo.description || 'Sin Desciprcion' }}
+    </p>
+    <div class="text-center">
+      <a href="#">Leer Mas...</a>
+    </div>
   </div>
 </div>
 </template>
@@ -31,9 +36,15 @@ export default {
 </script>
 
 <style lang="sass" scoped>
+  .title
+    background-color: #004b8c;
+    padding: 0.4em;
+    color: white;
+    font-weight: bold;
+    border-radius: 5px;
+
   .book-description
     height: 10em;
-    text-align: justify;
-    text-justify: inter-word;
+    text-align: center;
     overflow: hidden
 </style>
