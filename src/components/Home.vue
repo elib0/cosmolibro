@@ -1,17 +1,8 @@
 <template>
   <div class="page-home">
-    <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
+    <div class="col-xs-12 col-sm-12 col-md-9 col-lg-9">
         <section class="row">
-          <div v-for="book in books" class="col-xs-6 col-sm-6 col-md-4 col-lg-4 book" @click="showDetails($index)">
-            <div class="text-center">
-              <h5 class="book-title">
-                <strong>{{ book.volumeInfo.title }}</strong>
-              </h5>
-              <img class="book-image" height="180" :src="book.volumeInfo.imageLinks.smallThumbnail" alt="{{ book.volumeInfo.title }}">
-              <p class="book-description">{{ book.volumeInfo.description || 'Sin descripción' }}</p>
-              <button type="button" class="btn btn-success btn-xs btn-block" @click="addToCart(book.id)">Agregar al carrito</button>
-            </div>
-          </div>
+          <books></books>
         </section>
         <section class="row">
           <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
@@ -22,7 +13,7 @@
           </div>
         </section>
     </div>
-    <div class="hidden-xs hidde-sm col-md-4 col-lg-4">
+    <div class="hidden-xs hidde-sm col-md-3 col-lg-3">
       <login></login>
     </div>
   </div>
@@ -30,43 +21,21 @@
 
 <script>
 import popular from './PopularBook'
+import books from './Books'
 import Login from './Login'
 import modal from 'vue-strap'
 
 export default {
   data () {
     return {
-      books: [],
       zoomModal: true
     }
   },
   components: {
     Login,
+    books,
     modal,
     popular
-  },
-  compiled: function () {
-    this.$root.$refs.spinner.show()
-  },
-  ready: function () {
-    let api = 'https://www.googleapis.com/books/v1/volumes?q=harry&maxResults=3&orderBy=relevance'
-    this.$root.$http.get(api).then(res => {
-      let books = res.json()
-      this.books = books.items
-      this.$root.$refs.spinner.hide()
-    }).catch(err => {
-      console.log(err)
-    })
-  },
-  methods: {
-    addToCart: function (id) {
-      this.$root.cart.push(id)
-    },
-    showDetails: function (id) {
-      console.log(this.books[id])
-      this.$root.modal.show = true
-      this.$root.modal.book = this.books[id]
-    }
   }
 }
 </script>
