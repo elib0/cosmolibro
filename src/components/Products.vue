@@ -13,21 +13,20 @@
     </div>
 </template>
 <script>
+var terms = ['comida', 'flores', 'tecnologia', 'autos', 'paisajes', 'paises', 'cuentos', 'aviones', 'computacion']
+var term = terms[Math.floor((Math.random() * (terms.length - 1)) + 1)]
+
 export default {
   props: {
-    productsPerPage: {
+    'maxResults': {
       type: Number,
-      default: 3
+      default: 12
     },
-    maxResults: {
-      type: Number,
-      default: 3
-    },
-    query: {
+    'query': {
       type: String,
-      default: 'comida'
+      default: term
     },
-    order: {
+    'order': {
       type: String,
       default: 'relevance'
     }
