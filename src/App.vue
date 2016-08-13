@@ -4,10 +4,10 @@
 
   <!-- Modal General -->
   <modal :show.sync="modal.show" :effect="modal.effect" :width="modal.width" v-ref:modal>
-    <div slot="modal-title" class="modal-title">{{ modal.book.volumeInfo.title }}</div>
+    <div slot="modal-title" class="modal-title">hola</div>
     <div slot="modal-body" class="modal-body">
       <img class="book-image" height="180" :src="modal.book.volumeInfo.imageLinks.smallThumbnail" alt="{{ modal.book.volumeInfo.title }}">
-      {{ modal.book.volumeInfo.description || 'Sin descripción' }}
+      {{ modal.book.volumeInfo.description || 'Sin descripción' }}<br>
       <span class="label label-info">N° paginas:{{ modal.book.volumeInfo.pageCount }}</span>
       <span class="label label-primary">Año de publicación:{{ modal.book.volumeInfo.publishedDate }}</span>
       <span class="label label-warning">
@@ -37,7 +37,7 @@
       </div>
       <div class="row wrapper">
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-          <router-view class="animated" transition-mode="out-in" keep-alive></router-view>
+          <router-view transition-mode="out-in" keep-alive></router-view>
         </div>
       </div>
     </div>
@@ -45,6 +45,7 @@
 </template>
 
 <script>
+// import StoreProduct from './utiles/store.js'
 import Menu from './components/Menu.vue'
 import { alert, spinner, modal } from 'vue-strap'
 
@@ -60,11 +61,27 @@ export default {
       modal: {
         show: false,
         effect: 'zoom',
-        width: '50%',
-        book: null
+        width: '90%',
+        book: {
+          volumeInfo: {
+            title: null,
+            imageLinks: {
+              smallThumbnail: null
+            },
+            description: null
+          }
+        }
       },
       reponse: null,
       cart: []
+    }
+  },
+  watch: {
+    cart: {
+      handler: function (cart) {
+        // StoreProduct.save('cosmolibro', cart)
+      },
+      deep: true
     }
   },
   methods: {

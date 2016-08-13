@@ -20,7 +20,14 @@ export default {
 
   data () {
     return {
-      book: {}
+      book: {
+        volumeInfo: {
+          description: null,
+          imageLinks: {
+            smallThumbnail: null
+          }
+        }
+      }
     }
   },
   ready: function () {

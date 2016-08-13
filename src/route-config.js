@@ -1,6 +1,9 @@
 export function configRouter (router) {
   // normal routes
   router.map({
+    'books': {
+      component: require('./components/Products.vue')
+    },
     '/contact': {
       component: require('./components/Contact.vue')
     },

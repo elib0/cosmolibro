@@ -13,20 +13,25 @@
     <li><a v-link="{ path:'/ebooks' }">E-Books</a></li>
     <li><a v-link="{ path:'/hello' }">Promociones</a></li>
     <li><a v-link="{ path:'/contact' }">Contacto</a></li>
-    <li><a v-link="{ path:'/buys' }">Mis Compras</a></li>
-    <li>
-      <a v-link="{ path:'/car' }" class="cart"><span class="badge animated" :clas="{'pulse':newItem}">{{ cart.length }}</span><i class="glyphicon glyphicon-shopping-cart"></i>
+
+    <!-- //Derecha -->
+    <li slot="right" class="dropdown">
+      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Mi cuenta<span class="caret"></span></a>
+      <ul class="dropdown-menu dropdown-login">
+        <li><login></login></li>
+      </ul>
+    </li>
+    <li  slot="right">
+      <a v-link="{ path:'/car' }" class="cart"><span class="badge animated" :class="{'pulse':newItem}">{{ cart.length }}</span><i class="glyphicon glyphicon-shopping-cart"></i>
       </a>
     </li>
-    <!-- <li slot="right" class="social-buttons">Prueba</li>
-    <li slot="right" class="social-buttons">Prueba</li>
-    <li slot="right" class="social-buttons">Prueba</li> -->
   </navbar>
 </template>
 
 <script>
 import { navbar } from 'vue-strap'
 import search from './Search.vue'
+import login from './Login'
 
 export default {
 
@@ -37,22 +42,12 @@ export default {
     }
   },
   components: {
+    login,
     navbar,
     search
   },
   ready: function () {
     this.cart = this.$root.cart
-  },
-  watch: {
-    'cart': {
-      handler: function (val, oldVal) {
-        console.log(val, oldVal)
-        if (oldVal) {
-          this.newItem = true
-        }
-      },
-      deep: true
-    }
   }
 }
 </script>
@@ -67,4 +62,7 @@ export default {
   top: 8px;
   z-index: 2;
   right: 3px;
+.dropdown
+  .dropdown-login
+    width: 500px
 </style>

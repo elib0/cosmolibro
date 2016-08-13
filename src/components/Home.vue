@@ -1,28 +1,24 @@
 <template>
   <div class="page-home">
-    <div class="col-xs-12 col-sm-12 col-md-9 col-lg-9">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
         <section class="row">
-          <books></books>
+          <products></products>
         </section>
         <section class="row">
           <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
             <popular></popular>
           </div>
           <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
-            <h4>NOVEDADES</h4>
+            <popular></popular>
           </div>
         </section>
-    </div>
-    <div class="hidden-xs hidde-sm col-md-3 col-lg-3">
-      <login></login>
     </div>
   </div>
 </template>
 
 <script>
 import popular from './PopularBook'
-import books from './Books'
-import Login from './Login'
+import products from './Products'
 import modal from 'vue-strap'
 
 export default {
@@ -32,8 +28,7 @@ export default {
     }
   },
   components: {
-    Login,
-    books,
+    products,
     modal,
     popular
   }

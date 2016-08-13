@@ -1,5 +1,5 @@
 <template>
-<div class="well col-xs-4 col-sm-4 col-md-4 col-lg-4 col-xs-offset-4 col-sm-offset-4 col-md-offset-4 col-lg-offset-4">
+<div class="well col-xs-12 col-sm-12 col-md-4 col-lg-4 col-md-offset-4 col-lg-offset-4">
     <h4 class="text-center">Contactanos</h4>
     <form>
         <div class="form-group">
