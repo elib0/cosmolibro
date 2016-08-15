@@ -9,7 +9,7 @@
             <popular></popular>
           </div>
           <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
-            <popular></popular>
+            <news></news>
           </div>
         </section>
     </div>
@@ -18,6 +18,7 @@
 
 <script>
 import popular from './PopularBook'
+import news from './News'
 import products from './Products'
 import modal from 'vue-strap'
 
@@ -30,7 +31,8 @@ export default {
   components: {
     products,
     modal,
-    popular
+    popular,
+    news
   }
 }
 </script>

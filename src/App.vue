@@ -3,8 +3,7 @@
   <spinner text="Cargando Libros" id="spinner-box" :fixed="true" v-ref:spinner></spinner>
 
   <!-- Modal General -->
-  <modal :show.sync="modal.show" :effect="modal.effect" :width="modal.width" v-ref:modal>
-    <div slot="modal-title" class="modal-title">hola</div>
+  <modal :title="modal.book.volumeInfo.title" :show.sync="modal.show" :effect="modal.effect" :width="modal.width" v-ref:modal>
     <div slot="modal-body" class="modal-body">
       <img class="book-image" height="180" :src="modal.book.volumeInfo.imageLinks.smallThumbnail" alt="{{ modal.book.volumeInfo.title }}">
       {{ modal.book.volumeInfo.description || 'Sin descripción' }}<br>
@@ -37,7 +36,7 @@
       </div>
       <div class="row wrapper">
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-          <router-view transition-mode="out-in" keep-alive></router-view>
+          <router-view class="view" transition="route" transition-mode="out-in" keep-alive></router-view>
         </div>
       </div>
     </div>
@@ -106,6 +105,13 @@ export default {
 
 <style lang="sass">
 @import "./app.sass"
+
+.view
+  transition: all .5s ease
+
+.route-enter, .route-leave
+  opacity: 0
+  transform: translate3d(10px, 0, 0)
 </style>
 
 <style lang="sass" scoped>

@@ -1,18 +1,26 @@
 <template>
-    <div v-for="book in books" class="col-xs-6 col-sm-6 col-md-4 col-lg-4 book">
-      <div class="text-center">
-        <div @click="showDetails($index)">
-          <h5 class="book-title">
-            <strong>{{ book.volumeInfo.title }}</strong>
-          </h5>
-          <img class="book-image" height="180" :src="book.volumeInfo.imageLinks.smallThumbnail" alt="{{ book.volumeInfo.title }}">
-          <p class="book-description">{{ book.volumeInfo.description || 'Sin descripción' }}</p>
-        </div>
-        <button type="button" class="btn btn-success btn-xs btn-block" @click="addToCart(book)">Agregar al carrito</button>
+  <tooltip
+    trigger="hover"
+    effect="scale"
+    placement="top"
+    content="{{ book.volumeInfo.title }}">
+  </tooltip>
+  <div v-for="book in books" class="col-xs-6 col-sm-6 col-md-4 col-lg-4 book">
+    <div class="text-center">
+      <div @click="showDetails($index)">
+        <!-- <h5 class="book-title">
+          <strong>{{ book.volumeInfo.title }}</strong>
+        </h5> -->
+        <img class="book-image" height="180" :src="book.volumeInfo.imageLinks.smallThumbnail" alt="{{ book.volumeInfo.title }}">
+        <p class="book-description">{{ book.volumeInfo.description || 'Sin descripción' }}</p>
       </div>
+      <button type="button" class="btn btn-success btn-xs btn-block" @click="addToCart(book)">Agregar al carrito</button>
     </div>
+  </div>
 </template>
 <script>
+import tooltip from 'vue-strap'
+
 var terms = ['comida', 'flores', 'tecnologia', 'autos', 'paisajes', 'paises', 'cuentos', 'aviones', 'computacion']
 var term = terms[Math.floor((Math.random() * (terms.length - 1)) + 1)]
 
@@ -43,6 +51,9 @@ export default {
       }
     }
   },
+  components: {
+    tooltip
+  },
   compiled: function () {
     this.$root.$refs.spinner.show()
   },
@@ -71,6 +82,7 @@ export default {
 <style lang="sass" scoped>
 .book
   cursor: pointer
+  margin-bottom: 10px
   .book-description
     height: 6rem;
     text-overflow: ellipsis;

@@ -1,12 +1,11 @@
 <template>
-  <div class="book-list">
-    <products></products>
-  </div>
+  <products></products>
 </template>
 
 <script>
 import products  from "./Products";
 export default {
+  replace: false,
   data () {
     return {
     }
@@ -15,8 +14,4 @@ export default {
 </script>
 
 <style lang="sass" scoped>
-
-.book-list
-  background-color: #FFF
-
 </style>
