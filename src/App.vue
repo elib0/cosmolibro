@@ -73,6 +73,7 @@ export default {
         }
       },
       reponse: null,
+      user: null,
       cart: []
     }
   },

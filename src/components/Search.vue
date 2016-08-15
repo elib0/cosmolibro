@@ -1,7 +1,12 @@
 <template>
 <form>
   <div class="input-group">
-    <input type="text" class="form-control" placeholder="Buscar un libro" aria-describedby="search-addon">
+    <typeahead
+      placeholder="Buscar un libro"
+      key="results"
+      src="https://maps.googleapis.com/maps/api/geocode/json?address="
+      :on-hit="googleCallback">
+    </typeahead>
     <span class="input-group-btn">
       <button class="btn btn-default" type="button"><i class="glyphicon glyphicon-search"></i></button>
     </span>
@@ -10,12 +15,22 @@
 </template>
 
 <script>
-// import VueResource from 'vue-resource'
+import { typeahead } from 'vue-strap'
 
 export default {
   data () {
     return {
-
+      term: ''
+    }
+  },
+  components: {
+    typeahead
+  },
+  methods: {
+    googleCallback (items, targetVM) {
+      const that = targetVM
+      that.reset()
+      that.query = items.formatted_address
     }
   }
 }

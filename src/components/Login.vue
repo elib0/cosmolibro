@@ -1,6 +1,6 @@
 <template>
 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 login">
-  <div v-if="!logged">
+  <div v-if="!user.logged">
     <h4 class="text-center">Iniciar Sesión:</h4>
     <form class="form" action="#" @submit.prevent="login">
       <div class="form-group">
@@ -25,7 +25,7 @@
     <h4>Bienvenido:</h4>
     <ul>
       <li><a href="#">Mis compras</a></li>
-      <li><a href="#" @click.prevent="logout">Salir</a></li>
+      <li><a href="#" @click="logout">Salir</a></li>
     </ul>
   </div>
 </div>
@@ -34,7 +34,8 @@
 <script>
 var defaulUser = {
   nick: '',
-  password: null
+  password: null,
+  logged: false
 }
 
 export default {
@@ -43,18 +44,19 @@ export default {
 
   data () {
     return {
-      user: defaulUser,
-      logged: false
+      user: defaulUser
     }
+  },
+  compiled: function () {
+    this.$root.user = this.user
   },
   methods: {
     login: function () {
       if (this.user.nick !== '' && this.user.password) {
-        this.logged = true
+        this.user.logged = true
       }
     },
     logout: function () {
-      this.logged = false
       this.user = defaulUser
     }
   }
