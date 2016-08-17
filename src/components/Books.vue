@@ -1,5 +1,7 @@
 <template>
-  <products></products>
+  <div class="component-books">
+    <products></products>
+  </div>
 </template>
 
 <script>
@@ -14,4 +16,6 @@ export default {
 </script>
 
 <style lang="sass" scoped>
+.component-books
+  background-color: #FFF
 </style>

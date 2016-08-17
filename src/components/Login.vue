@@ -21,11 +21,13 @@
       </p>
     </form>
   </div>
-  <div class="text-center" v-else>
-    <h4>Bienvenido:</h4>
+  <div v-else>
+    <h4 class="text-center">Bienvenido:</h4>
     <ul>
-      <li><a href="#">Mis compras</a></li>
-      <li><a href="#" @click="logout">Salir</a></li>
+      <li><a href="#">Tu cuenta</a></li>
+      <li><a href="#">Tus Ordenes</a></li>
+      <li><a href="#">Lista de deseos</a></li>
+      <li><a href="#" @click.prevent="logout">Salir</a></li>
     </ul>
   </div>
 </div>

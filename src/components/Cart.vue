@@ -1,48 +1,55 @@
 <template>
   <div class="component-cart">
     <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9 cart" v-show="cart.length > 0">
-      <h3><strong>Carro de Compras</strong></h3>
-      <table class="table">
-        <thead>
-          <tr>
-            <th></th>
-            <th>Precio</th>
-            <th class="text-right">Cantidad</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr v-for="product in cart" track-by="id"  class="animated" transition="bounce">
-            <td>
-              <div class="col-xs-6 col-sm-6 col-md-3 col-lg-2">
-                <img height="150" :src="product.volumeInfo.imageLinks.smallThumbnail" alt="">
-              </div>
-              <div class="col-xs-6 col-sm-6 col-md-9 col-lg-10">
-                <h4><strong>{{ product.volumeInfo.title }}</strong></h4>
-                <div class="btn-group" role="group">
-                  <button type="button" class="btn btn-danger btn-xs" @click="cart.$remove(product)">Borrar</button>
-                  <button type="button" class="btn btn-warning btn-xs">Obsequiar</button>
-                  <button type="button" class="btn btn-primary btn-xs">Guardar para después</button>
+      <section>
+        <h3><strong>Carro de Compras</strong></h3>
+        <table class="table">
+          <thead>
+            <tr>
+              <th></th>
+              <th>Precio</th>
+              <th class="text-right">Cantidad</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="product in cart" track-by="id"  class="animated" transition="bounce">
+              <td>
+                <div class="col-xs-6 col-sm-6 col-md-3 col-lg-2">
+                  <img height="150" :src="product.volumeInfo.imageLinks.smallThumbnail" alt="">
                 </div>
-              </div>
+                <div class="col-xs-6 col-sm-6 col-md-9 col-lg-10">
+                  <h4><strong>{{ product.volumeInfo.title }}</strong></h4>
+                  <div class="btn-group" role="group">
+                    <button type="button" class="btn btn-danger btn-xs" @click="cart.$remove(product)">Borrar</button>
+                    <button type="button" class="btn btn-warning btn-xs">Obsequiar</button>
+                    <button type="button" class="btn btn-primary btn-xs">Guardar para después</button>
+                  </div>
+                </div>
 
-            </td>
-            <td><strong class="text-warning">{{ product.price | currency }}</strong></td>
-            <td class="text-right form-inline">
-              <input class="form-control product-quantity" min="0" type="number" v-model="product.quantity" number>
-            </td>
-          </tr>
-          <tr>
-            <td></td>
-            <td colspan="2">
-              <h4><strong>Sub Total ({{ cart.length }}): {{ subTotal | currency }}</strong></h4>
-            </td>
-          </tr>
-        </tbody>
-      </table>
+              </td>
+              <td><strong class="text-warning">{{ product.price | currency }}</strong></td>
+              <td class="text-right form-inline">
+                <input class="form-control product-quantity" min="1" type="number" v-model="product.quantity" number>
+              </td>
+            </tr>
+            <tr>
+              <td></td>
+              <td colspan="2">
+                <h4><strong>Sub Total ({{ cart.length }}): {{ subTotal | currency }}</strong></h4>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
     </div>
 
-    <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 cart" v-show="cart.length > 0">
-    Checkout
+    <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 checkout text-center" v-show="cart.length > 0">
+      <section>
+        <h4>
+          <strong>Sub Total ({{ cart.length }}): <span class="text-warning">{{ subTotal | currency }}</span></strong>
+        </h4>
+        <button class="btn btn-warning btn-block">Proceder</button>
+      </section>
     </div>
 
     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 cart" v-else>
@@ -84,8 +91,10 @@ export default {
 </script>
 
 <style lang="sass" scoped>
-.cart
+section
   background-color: #FFF
-  .product-quantity
-    width: 7em;
+  padding: 1em
+
+.product-quantity
+  width: 7em;
 </style>
