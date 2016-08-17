@@ -2,31 +2,10 @@
   <!-- Cargador -->
   <spinner text="Cargando Libros" id="spinner-box" :fixed="true" v-ref:spinner></spinner>
 
-  <!-- Modal General -->
-  <modal :title="modal.book.volumeInfo.title" :show.sync="modal.show" :effect="modal.effect" :width="modal.width" v-ref:modal>
-    <div slot="modal-body" class="modal-body">
-      <img class="book-image" height="180" :src="modal.book.volumeInfo.imageLinks.smallThumbnail" alt="{{ modal.book.volumeInfo.title }}">
-      {{ modal.book.volumeInfo.description || 'Sin descripción' }}<br>
-      <span class="label label-info">N° paginas:{{ modal.book.volumeInfo.pageCount }}</span>
-      <span class="label label-primary">Año de publicación:{{ modal.book.volumeInfo.publishedDate }}</span>
-      <span class="label label-warning">
-        Autor(es):
-        <span v-for="author in modal.book.volumeInfo.authors">{{ author }}, </span>
-      </span>
-    </div>
-    <div slot="modal-footer" class="modal-footer">
-      <div class="btn-group">
-        <button type="button" class="btn btn-success" @click="addToCart"><i class="glyphicon glyphicon-shopping-cart"></i></button>
-        <button type="button" class="btn btn-danger" @click="modal.show = false">Cerrar Ventana</button>
-        <button type="button" class="btn btn-primary"><i class="glyphicon glyphicon-gift"></i></button>
-      </div>
-    </div>
-  </modal>
-
   <div class="container-fluid">
     <!-- Mensajes de alerta -->
     <alert :show.sync="alert.show" :duration="alert.duration" placement="top" :type="alert.type" dismissable v-ref:alert>
-      <strong>{{ alert.title }}</strong> {{ alert.message }}
+      <strong>{{ alert.response.title }}</strong> {{ alert.response.message }}
     </alert>
     <div>
       <div class="row">
@@ -46,7 +25,7 @@
 <script>
 // import StoreProduct from './utiles/store.js'
 import Menu from './components/Menu.vue'
-import { alert, spinner, modal } from 'vue-strap'
+import { alert, spinner } from 'vue-strap'
 
 export default {
   replace: false,
@@ -55,23 +34,12 @@ export default {
       alert: {
         show: false,
         type: 'alert',
-        duration: 3000
-      },
-      modal: {
-        show: false,
-        effect: 'zoom',
-        width: '90%',
-        book: {
-          volumeInfo: {
-            title: null,
-            imageLinks: {
-              smallThumbnail: null
-            },
-            description: null
-          }
+        duration: 3000,
+        response: {
+          title: null,
+          message: null
         }
       },
-      reponse: null,
       user: null,
       cart: []
     }
@@ -84,16 +52,10 @@ export default {
       deep: true
     }
   },
-  methods: {
-    addToCart: function () {
-      this.cart.push(this.modal.book.id)
-    }
-  },
   components: {
     Menu,
     alert,
-    spinner,
-    modal
+    spinner
   }
 }
 </script>

@@ -1,25 +1,55 @@
 <template>
-  <tooltip
-    trigger="hover"
-    effect="scale"
-    placement="top"
-    content="{{ book.volumeInfo.title }}">
-  </tooltip>
-  <div v-for="book in books" class="col-xs-6 col-sm-6 col-md-4 col-lg-4 book">
-    <div class="text-center">
-      <div @click="showDetails($index)">
-        <!-- <h5 class="book-title">
-          <strong>{{ book.volumeInfo.title }}</strong>
-        </h5> -->
-        <img class="book-image" height="180" :src="book.volumeInfo.imageLinks.smallThumbnail" alt="{{ book.volumeInfo.title }}">
-        <p class="book-description">{{ book.volumeInfo.description || 'Sin descripción' }}</p>
+  <div class="component-products">
+    <!-- Modal Detalles -->
+    <modal :title="modal.product.volumeInfo.title" :show.sync="modal.show" :effect="modal.effect" :width="modal.width">
+      <div slot="modal-body" class="modal-body">
+        <img class="book-image" height="180" :src="modal.product.volumeInfo.imageLinks.smallThumbnail" alt="{{ modal.product.volumeInfo.title }}">
+        {{ modal.product.volumeInfo.description || 'Sin descripción' }}<br>
+        <span class="label label-info">N° paginas:{{ modal.product.volumeInfo.pageCount }}</span>
+        <span class="label label-primary">Año de publicación:{{ modal.product.volumeInfo.publishedDate }}</span>
+        <span class="label label-warning">
+          Autor(es):
+          <span v-for="author in modal.product.volumeInfo.authors">{{ author }}, </span>
+        </span>
       </div>
-      <button type="button" class="btn btn-success btn-xs btn-block" @click="addToCart(book)">Agregar al carrito</button>
+      <div slot="modal-footer" class="modal-footer">
+        <div class="btn-group">
+          <button type="button" class="btn btn-success" @click="addToCart(null)"><i class="glyphicon glyphicon-shopping-cart"></i></button>
+          <button type="button" class="btn btn-danger" @click="modal.show = false">Cerrar Ventana</button>
+          <button type="button" class="btn btn-primary"><i class="glyphicon glyphicon-gift"></i></button>
+        </div>
+      </div>
+    </modal>
+
+    <div v-for="product in products" track-by="id" class="col-xs-6 col-sm-6 col-md-4 col-lg-4 product">
+      <!-- <tooltip
+        trigger="hover"
+        effect="scale"
+        placement="top"
+        content="{{ product.volumeInfo.title }}">
+      </tooltip> -->
+      <div class="text-center">
+        <div @click="showDetails($index)">
+          <img class="product-image" height="180" :src="product.volumeInfo.imageLinks.smallThumbnail" alt="{{ product.volumeInfo.title }}">
+          <p class="product-description">{{ product.volumeInfo.description || 'Sin descripción' }}</p>
+        </div>
+        <button type="button" class="btn btn-success btn-xs btn-block" @click="addToCart(product)">Agregar al carrito</button>
+      </div>
     </div>
   </div>
 </template>
 <script>
-import tooltip from 'vue-strap'
+import { tooltip, modal } from 'vue-strap'
+
+var defaultProduct = {
+  volumeInfo: {
+    title: null,
+    imageLinks: {
+      smallThumbnail: null
+    },
+    description: null
+  }
+}
 
 var terms = ['comida', 'flores', 'tecnologia', 'autos', 'paisajes', 'paises', 'cuentos', 'aviones', 'computacion']
 var term = terms[Math.floor((Math.random() * (terms.length - 1)) + 1)]
@@ -41,49 +71,60 @@ export default {
   },
   data () {
     return {
-      books: [],
-      book: {
-        volumeInfo: {
-          title: null,
-          imageLinks: null,
-          description: null
-        }
+      cart: [],
+      cartIds: {},
+      products: [],
+      modal: {
+        show: false,
+        effect: 'zoom',
+        width: '90%',
+        product: defaultProduct
       }
     }
   },
   components: {
-    tooltip
+    tooltip,
+    modal
   },
   compiled: function () {
+    this.cart = this.$root.cart
     this.$root.$refs.spinner.show()
   },
   ready: function () {
     let api = 'https://www.googleapis.com/books/v1/volumes?q=' + this.query + '&maxResults=' + this.maxResults + '&orderBy=' + this.order
-    this.$root.$http.get(api).then(res => {
-      let books = res.json()
-      this.books = books.items
+    this.$http.get(api).then(res => {
+      let products = res.json()
+      this.products = products.items
       this.$root.$refs.spinner.hide()
     }).catch(err => {
       console.log(err)
     })
   },
   methods: {
-    addToCart: function (book) {
-      this.$root.cart.push(book)
+    addToCart: function (product) {
+      let pro = product || this.modal.product
+      if (this.cartIds[pro.id]) {
+        this.cartIds[pro.id].quantity += 1
+      } else {
+        pro.quantity = 1
+        pro.price = (Math.random() * 40000) + 1
+        this.cartIds[pro.id] = true
+        this.cart.push(pro)
+      }
     },
     showDetails: function (id) {
-      this.$root.modal.show = true
-      this.$root.modal.book = this.books[id]
+      this.modal.product = this.products[id]
+      this.modal.show = true
     }
   }
 }
 </script>
 
 <style lang="sass" scoped>
-.book
+.product
   cursor: pointer
-  margin-bottom: 10px
-  .book-description
+  margin: 5px 0
+  .product-description
     height: 6rem;
     text-overflow: ellipsis;
     white-space: pre-wrap;

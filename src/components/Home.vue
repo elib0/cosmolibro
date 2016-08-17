@@ -1,5 +1,5 @@
 <template>
-  <div class="page-home">
+  <div class="component-home">
     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
         <section class="row">
           <products :max-results="3"></products>
@@ -20,7 +20,6 @@
 import popular from './PopularBook'
 import news from './News'
 import products from './Products'
-import modal from 'vue-strap'
 
 export default {
   data () {
@@ -30,7 +29,6 @@ export default {
   },
   components: {
     products,
-    modal,
     popular,
     news
   }
@@ -38,7 +36,7 @@ export default {
 </script>
 
 <style lang="sass" scoped>
-  .page-home > div > *
+  .component-home > div > *
     background-color: white
     min-height: 300px
     section

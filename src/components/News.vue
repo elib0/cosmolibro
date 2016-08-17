@@ -7,8 +7,8 @@
     <table class="news">
       <tbody>
         <tr v-for="n in news">
-          <td><img width="50px" src="{{ n.author.avatar_url }}" class="profile-photo"></td>
-          <td><strong>{{ n.commit.message }}</strong></td>
+          <td><img width="50px" :src="n.author.avatar_url" class="profile-photo"></td>
+          <td><strong><a href="{{ n.html_url }}" target="_blank">{{ n.commit.message }}</a></strong></td>
         </tr>
       </tbody>
     </table>
@@ -27,7 +27,6 @@ export default {
     let api = 'https://api.github.com/repos/elib0/cosmolibro/commits'
     this.$root.$http.get(api).then(res => {
       this.news = res.json().slice(0, 4)
-      console.log(this.news)
     }).catch(err => {
       console.log(err)
     })

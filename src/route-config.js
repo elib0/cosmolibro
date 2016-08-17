@@ -7,6 +7,9 @@ export function configRouter (router) {
     '/contact': {
       component: require('./components/Contact.vue')
     },
+    '/cart': {
+      component: require('./components/Cart.vue')
+    },
     '/': {
       component: require('./components/Home.vue')
     }

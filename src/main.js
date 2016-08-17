@@ -10,6 +10,12 @@ import app from './App'
 Vue.use(VueRouter)
 Vue.use(VueResource)
 
+// Animaciones a usar
+Vue.transition('bounce', {
+  enterClass: 'bounceInLeft',
+  leaveClass: 'bounceOutRight'
+})
+
 // Creamos rutas
 const router = new VueRouter({
   history: true,
