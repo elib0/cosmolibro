@@ -8,7 +8,7 @@
       <tbody>
         <tr v-for="n in news">
           <td><img width="50px" :src="n.author.avatar_url" class="profile-photo"></td>
-          <td><strong><a href="{{ n.html_url }}" target="_blank">{{ n.commit.message }}</a></strong></td>
+          <td><strong><a href="{{ n.html_url }}" target="_blank">{{ n.commit.message }}</a></strong> - <small>{{ n.commit.author.date | date '%d/%m/%Y %r' }}</small></td>
         </tr>
       </tbody>
     </table>

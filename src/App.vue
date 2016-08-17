@@ -33,7 +33,7 @@ export default {
     return {
       alert: {
         show: false,
-        type: 'alert',
+        type: 'danger',
         duration: 3000,
         response: {
           title: null,

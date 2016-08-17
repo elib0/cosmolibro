@@ -48,7 +48,7 @@
         <h4>
           <strong>Sub Total ({{ cart.length }}): <span class="text-warning">{{ subTotal | currency }}</span></strong>
         </h4>
-        <button class="btn btn-warning btn-block">Proceder</button>
+        <button class="btn btn-warning btn-block">Proceder con la compra</button>
       </section>
     </div>
 

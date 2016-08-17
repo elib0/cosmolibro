@@ -1,5 +1,13 @@
 <template>
   <div class="component-products">
+    <bs-alert :show.sync="alert.show" :duration="5000" type="success" dismissable>
+      <strong>"{{ alert.productAdded.volumeInfo.title }}"</strong>
+      <br><small class="text-danger">¡Agregado al carrito de compras!</small>
+      <div class="pull-right">
+        <a v-link="{ path:'/cart' }" class="btn btn-default">Ir al Carrito</a>
+        <button type="button" class="btn btn-warning">Proceder con la compra</button>
+      </div>
+    </bs-alert>
     <!-- Modal Detalles -->
     <modal :title="modal.product.volumeInfo.title" :show.sync="modal.show" :effect="modal.effect" :width="modal.width">
       <div slot="modal-body" class="modal-body">
@@ -39,7 +47,7 @@
   </div>
 </template>
 <script>
-import { tooltip, modal } from 'vue-strap'
+import { tooltip, modal, alert } from 'vue-strap'
 
 var defaultProduct = {
   volumeInfo: {
@@ -81,14 +89,19 @@ export default {
       modal: {
         show: false,
         effect: 'zoom',
-        width: '90%',
+        width: '80%',
         product: defaultProduct
+      },
+      alert: {
+        show: false,
+        productAdded: defaultProduct
       }
     }
   },
   components: {
     tooltip,
-    modal
+    modal,
+    'bs-alert': alert
   },
   compiled: function () {
     this.cart = this.$root.cart
@@ -116,9 +129,13 @@ export default {
         this.cartIds[pro.id] = true
         this.cart.push(pro)
       }
+      if (this.modal.show) {
+        this.modal.show = false
+      }
+      this.alert.show = true
+      this.alert.productAdded = pro
     },
     showDetails: function (id) {
-      console.log(this.modalView)
       if (this.modalView) {
         this.modal.product = this.products[id]
         this.modal.show = true
