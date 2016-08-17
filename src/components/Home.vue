@@ -2,7 +2,7 @@
   <div class="component-home">
     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
         <section class="row">
-          <products :max-results="3"></products>
+          <products :max-results="3" modal-view></products>
         </section>
         <section class="row">
           <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">

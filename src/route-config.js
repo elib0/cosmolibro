@@ -4,6 +4,9 @@ export function configRouter (router) {
     'books': {
       component: require('./components/Products.vue')
     },
+    'book': {
+      component: require('./components/Product.vue')
+    },
     '/contact': {
       component: require('./components/Contact.vue')
     },

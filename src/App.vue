@@ -41,7 +41,8 @@ export default {
         }
       },
       user: null,
-      cart: []
+      cart: [],
+      cartIds: {}
     }
   },
   watch: {

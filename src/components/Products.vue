@@ -67,6 +67,10 @@ export default {
     'order': {
       type: String,
       default: 'relevance'
+    },
+    modalView: {
+      type: Boolean,
+      default: true
     }
   },
   data () {
@@ -88,6 +92,7 @@ export default {
   },
   compiled: function () {
     this.cart = this.$root.cart
+    this.cartIds = this.$root.cartIds
     this.$root.$refs.spinner.show()
   },
   ready: function () {
@@ -113,8 +118,13 @@ export default {
       }
     },
     showDetails: function (id) {
-      this.modal.product = this.products[id]
-      this.modal.show = true
+      console.log(this.modalView)
+      if (this.modalView) {
+        this.modal.product = this.products[id]
+        this.modal.show = true
+      } else {
+        console.log('redireccionando a detalle')
+      }
     }
   }
 }

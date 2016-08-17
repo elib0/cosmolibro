@@ -31,7 +31,7 @@ export default {
     }
   },
   ready: function () {
-    let api = 'https://www.googleapis.com/books/v1/volumes?q=php&maxResults=1&orderBy=relevance'
+    let api = 'https://www.googleapis.com/books/v1/volumes?q=javascrip&maxResults=1&orderBy=relevance'
     this.$root.$http.get(api).then(res => {
       let book = res.json()
       this.book = book.items[0]

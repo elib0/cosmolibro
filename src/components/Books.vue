@@ -1,13 +1,12 @@
 <template>
   <div class="component-books">
-    <products></products>
+    <products modal-view="true"></products>
   </div>
 </template>
 
 <script>
 import products  from "./Products";
 export default {
-  replace: false,
   data () {
     return {
     }

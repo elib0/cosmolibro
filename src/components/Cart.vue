@@ -20,7 +20,7 @@
                 <div class="col-xs-6 col-sm-6 col-md-9 col-lg-10">
                   <h4><strong>{{ product.volumeInfo.title }}</strong></h4>
                   <div class="btn-group" role="group">
-                    <button type="button" class="btn btn-danger btn-xs" @click="cart.$remove(product)">Borrar</button>
+                    <button type="button" class="btn btn-danger btn-xs" @click="removeProduct(product)">Borrar</button>
                     <button type="button" class="btn btn-warning btn-xs">Obsequiar</button>
                     <button type="button" class="btn btn-primary btn-xs">Guardar para después</button>
                   </div>
@@ -65,7 +65,8 @@ export default {
 
   data () {
     return {
-      cart: []
+      cart: [],
+      cartIds: {}
     }
   },
   computed: {
@@ -86,6 +87,13 @@ export default {
   },
   compiled () {
     this.cart = this.$root.cart
+    this.cartIds = this.$root.cartIds
+  },
+  methods: {
+    removeProduct: function (product) {
+      this.cart.$remove(product)
+      delete this.cartIds[product.id]
+    }
   }
 }
 </script>
