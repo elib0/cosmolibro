@@ -1,11 +1,11 @@
 <template>
-  <div class="component-products">
+  <div class="products-component">
     <bs-alert :show.sync="alert.show" :duration="5000" type="success" dismissable>
       <strong>"{{ alert.productAdded.volumeInfo.title }}"</strong>
       <br><small class="text-danger">¡Agregado al carrito de compras!</small>
       <div class="pull-right">
         <a v-link="{ path:'/cart' }" class="btn btn-default">Ir al Carrito</a>
-        <button type="button" class="btn btn-warning">Proceder con la compra</button>
+        <button type="button" class="btn btn-warning">Proceder con la compra: ({{ cart.length }} Producto(s))</button>
       </div>
     </bs-alert>
     <!-- Modal Detalles -->
@@ -23,8 +23,9 @@
       <div slot="modal-footer" class="modal-footer">
         <div class="btn-group">
           <button type="button" class="btn btn-success" @click="addToCart(null)"><i class="glyphicon glyphicon-shopping-cart"></i></button>
+          <a class="btn btn-primary" v-link="{ path: '/book/' + modal.product.id }">Ver mas detalles</a>
           <button type="button" class="btn btn-danger" @click="modal.show = false">Cerrar Ventana</button>
-          <button type="button" class="btn btn-primary"><i class="glyphicon glyphicon-gift"></i></button>
+          <button type="button" class="btn btn-success"><i class="glyphicon glyphicon-gift"></i></button>
         </div>
       </div>
     </modal>
@@ -59,26 +60,15 @@ var defaultProduct = {
   }
 }
 
-var terms = ['comida', 'flores', 'tecnologia', 'autos', 'paisajes', 'paises', 'cuentos', 'aviones', 'computacion']
-var term = terms[Math.floor((Math.random() * (terms.length - 1)) + 1)]
-
 export default {
   props: {
-    'maxResults': {
-      type: Number,
-      default: 12
-    },
-    'query': {
-      type: String,
-      default: term
-    },
-    'order': {
-      type: String,
-      default: 'relevance'
-    },
     modalView: {
       type: Boolean,
-      default: true
+      default: false
+    },
+    maxResults: {
+      type: Number,
+      default: 12
     }
   },
   data () {
@@ -86,6 +76,11 @@ export default {
       cart: [],
       cartIds: {},
       products: [],
+      api: {
+        query: null,
+        maxResults: 12,
+        order: 'relevance'
+      },
       modal: {
         show: false,
         effect: 'zoom',
@@ -104,19 +99,19 @@ export default {
     'bs-alert': alert
   },
   compiled: function () {
+    this.$root.$refs.spinner.show() // Mostramos cargador
+
     this.cart = this.$root.cart
     this.cartIds = this.$root.cartIds
-    this.$root.$refs.spinner.show()
+    this.api.maxResults = this.maxResults
   },
   ready: function () {
-    let api = 'https://www.googleapis.com/books/v1/volumes?q=' + this.query + '&maxResults=' + this.maxResults + '&orderBy=' + this.order
-    this.$http.get(api).then(res => {
-      let products = res.json()
-      this.products = products.items
-      this.$root.$refs.spinner.hide()
-    }).catch(err => {
-      console.log(err)
-    })
+    this.fetchProducts()
+  },
+  route: {
+    data: function (transition) {
+      this.fetchProducts()
+    }
   },
   methods: {
     addToCart: function (product) {
@@ -140,8 +135,22 @@ export default {
         this.modal.product = this.products[id]
         this.modal.show = true
       } else {
-        console.log('redireccionando a detalle')
+        this.$router.go({ path: '/book/' + this.products[id].id })
       }
+    },
+    fetchProducts: function () {
+      var terms = ['comida', 'flores', 'tecnologia', 'autos', 'paisajes', 'paises', 'dibujo', 'aviones', 'computacion', 'casas', 'china', 'castellano', 'historia', 'deportes']
+      var term = terms[Math.floor((Math.random() * (terms.length - 1)) + 1)]
+      this.api.query = term
+
+      let api = 'https://www.googleapis.com/books/v1/volumes?q=' + this.api.query + '&maxResults=' + this.maxResults + '&orderBy=' + this.api.order
+      return this.$http.get(api).then(res => {
+        this.$root.$refs.spinner.hide()
+        let products = res.json()
+        this.products = products.items
+      }).catch(err => {
+        console.log(err)
+      })
     }
   }
 }

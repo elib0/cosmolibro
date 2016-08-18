@@ -4,7 +4,7 @@ export function configRouter (router) {
     'books': {
       component: require('./components/Products.vue')
     },
-    'book': {
+    'book/:productId': {
       component: require('./components/Product.vue')
     },
     '/contact': {

@@ -1,5 +1,5 @@
 <template>
-  <div class="component-menu">
+  <div class="menu-component">
     <div>
       <h1 class="text-center"><strong>Logo de la empresa</strong></h1>
       <div class="row">

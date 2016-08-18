@@ -20,6 +20,9 @@
       </div>
     </div>
   </div>
+  <footer class="text-center">
+    Todos los derechos 2016 - 2017 reservados, Cosmo Libro C.A.
+  </footer>
 </template>
 
 <script>

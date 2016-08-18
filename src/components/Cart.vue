@@ -1,9 +1,8 @@
 <template>
-  <div class="component-cart">
+  <div class="cart-component">
     <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9 cart" v-show="cart.length > 0">
       <section>
         <h3><strong>Carro de Compras</strong></h3>
-        <button type="button" class="btn btn-danger btn-sm pull-right" @click="deleteCart">Borrar todos</button>
         <table class="table">
           <thead>
             <tr>
@@ -49,7 +48,8 @@
         <h4>
           <strong>Sub Total ({{ cart.length }}): <span class="text-warning">{{ subTotal | currency }}</span></strong>
         </h4>
-        <button class="btn btn-warning btn-block">Proceder con la compra</button>
+        <button class="btn btn-warning btn-block">Proceder con la compra</button><br>
+        <button type="button" class="btn btn-danger btn-sm" @click="deleteCart">Borrar todos <i class="glyphicon glyphicon-trash"></i></button>
       </section>
     </div>
 

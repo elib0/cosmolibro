@@ -1,5 +1,5 @@
 <template>
-<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" v-if="book">
   <h4 class="text-uppercase text-center title">El libro del mes</h4>
   <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
     <img :src="book.volumeInfo.imageLinks.smallThumbnail" >
@@ -20,14 +20,7 @@ export default {
 
   data () {
     return {
-      book: {
-        volumeInfo: {
-          description: null,
-          imageLinks: {
-            smallThumbnail: ''
-          }
-        }
-      }
+      book: null
     }
   },
   ready: function () {

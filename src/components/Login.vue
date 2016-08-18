@@ -1,5 +1,5 @@
 <template>
-<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 login">
+<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 login-component">
   <div v-if="!user.logged">
     <h4 class="text-center">Iniciar Sesión:</h4>
     <form class="form" action="#" @submit.prevent="login">
@@ -66,7 +66,7 @@ export default {
 </script>
 
 <style lang="sass" scoped>
-  .login
+  .login-component
     color: #333
 
   h4.text-center

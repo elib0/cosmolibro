@@ -1,8 +1,8 @@
 <template>
-  <div class="component-home">
+  <section class="home-component">
     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
         <section class="row">
-          <products :max-results="3" modal-view></products>
+          <home-products :max-results="6" modal-view></home-products>
         </section>
         <section class="row">
           <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
@@ -13,7 +13,7 @@
           </div>
         </section>
     </div>
-  </div>
+  </section>
 </template>
 
 <script>
@@ -28,7 +28,7 @@ export default {
     }
   },
   components: {
-    products,
+    'home-products': products,
     popular,
     news
   }
@@ -36,7 +36,7 @@ export default {
 </script>
 
 <style lang="sass" scoped>
-  .component-home > div > *
+  .home-component > div > *
     background-color: white
     min-height: 300px
     section

@@ -1,5 +1,5 @@
 <template>
-<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" v-if="news.length > 0">
   <h4 class="text-uppercase text-center title">
     Novedades
     <small>(Desarrollo cosmo libro)</small>
