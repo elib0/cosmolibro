@@ -3,6 +3,7 @@
     <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9 cart" v-show="cart.length > 0">
       <section>
         <h3><strong>Carro de Compras</strong></h3>
+        <button type="button" class="btn btn-danger btn-sm pull-right" @click="deleteCart">Borrar todos</button>
         <table class="table">
           <thead>
             <tr>
@@ -53,7 +54,7 @@
     </div>
 
     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 cart" v-else>
-    <h1 class="text-center">No tienes artículos en el carrito. <a v-link="{ path:'/#' }" title="Ir de compras">Ir de compras</a></h1>
+    <h1 class="text-center">No tienes artículos en el carrito. <a v-link="{ path:'/books' }" title="Ir de compras">Ir de compras</a></h1>
     </div>
   </div>
 </template>
@@ -93,6 +94,9 @@ export default {
     removeProduct: function (product) {
       this.cart.$remove(product)
       delete this.cartIds[product.id]
+    },
+    deleteCart: function () {
+      this.cart = []
     }
   }
 }
